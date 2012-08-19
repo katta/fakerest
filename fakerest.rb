@@ -96,7 +96,7 @@ class ProfileLoader
 end
 
 if(ARGV[0] == nil || ARGV[0].empty?)
-  puts "Profile File Path not provided.\n Usage: ruby stubs.rb profiles/sample.yaml"
+  puts "Profile File Path not provided.\n Usage: ruby fakerest.rb profiles/sample.yaml"
   exit
 end
 profile_file_path = ARGV[0]
