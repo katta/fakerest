@@ -1,0 +1,14 @@
+---
+method : get
+path : /customer/:id
+response:
+  content_file : customer
+  content_type : json
+  status_code : 200
+---
+method : post
+path : /customer/:id
+response:
+  content_file : customer1
+  content_type : json1
+  status_code : 2001

@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'yaml'
 require 'sinatra'
 
 set :port, 1111
@@ -39,13 +40,19 @@ class ProfileLoader
     request_mappings = []
     profile_file_path = profile_file
 
-    content = File.readlines(profile_file_path).find_all{|line| !line.strip.empty? && !line.start_with?("#")}
-    content.each do |line|
-      request_path, response_values = line.split("=>").collect(&:strip)
-      method, path = request_path.split("|").collect(&:strip)
-      response_file, content_type, status_code = response_values.split("|").collect(&:strip)
+    defns = YAML::load_documents(File.open(profile_file_path))
+    defns.each do |doc|
+      method = doc['method']
+      path = doc['path']
+
+      response = doc['response']
+      response_file = response['content_file']
+      content_type = response['content_type']
+      status_code = response['status_code']
+      
       request_mappings << RequestMapping.new(method, path, status_code, response_file, content_type)
     end
+
     configure_requests(request_mappings)
   end
 
