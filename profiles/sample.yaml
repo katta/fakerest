@@ -7,8 +7,8 @@ response:
   status_code : 200
 ---
 method : post
-path : /customer/:id
+path : /customer
 response:
-  content_file : customer1
-  content_type : json1
-  status_code : 2001
+  content_file : customer_created
+  content_type : text/plain
+  status_code : 200
