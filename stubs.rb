@@ -35,8 +35,7 @@ end
 class ProfileLoader
   @@user_requests = []
 
-  def self.load(profile_file, user_requests = [])
-    @@user_requests = user_requests
+  def self.load(profile_file)
     request_mappings = []
     profile_file_path = profile_file
 
@@ -97,7 +96,7 @@ class ProfileLoader
 end
 
 if(ARGV[0] == nil || ARGV[0].empty?)
-  puts "Profile File Path not provided.\n Usage: ruby stubs.rb kilkari.profile"
+  puts "Profile File Path not provided.\n Usage: ruby stubs.rb profiles/sample.yaml"
   exit
 end
 profile_file_path = ARGV[0]
