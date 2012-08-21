@@ -15,8 +15,8 @@ module FakeRest
 
         options[:port] = 1111
         options[:config] = nil
-        options[:views] = nil
-        options[:uploads] = nil
+        options[:views] = 'views/'
+        options[:uploads] = 'uploads/'
 
         opts.on("-c","--config CONFIG_FILE","Confilg file to load request mappings (required)") do |cfg|
           options[:config] = cfg
@@ -82,8 +82,10 @@ module FakeRest
 
   class ProfileLoader
     @@user_requests = []
+    @@options = {}
 
-    def self.load(profile_file)
+    def self.load(profile_file, options)
+      @@options = options
       request_mappings = []
       profile_file_path = profile_file
 
@@ -122,7 +124,7 @@ module FakeRest
 
     def self.upload_file(file_params)
       file_name = file_params[:filename] + Time.now.strftime("%Y%m%d%H%M%S")
-      File.open("uploads/" + file_name, "w") do |f|
+      File.open("#{@@options[:uploads]}" + file_name, "w") do |f|
         f.write(file_params[:tempfile].read)
       end
       [file_name, file_params[:type]]
@@ -149,22 +151,41 @@ options = FakeRest::ArgumentsParser.new.parse(ARGV)
 require 'sinatra'
 
 set :port, options[:port]
+set :views, options[:views]
+
 profile_file_path = options[:config]
 
-FakeRest::ProfileLoader.load(profile_file_path)
+FakeRest::ProfileLoader.load(profile_file_path, options)
 
 get "/requests/:count" do
-  user_requests = ProfileLoader.user_requests
+  user_requests = FakeRest::ProfileLoader.user_requests
   requests_count = params[:count].to_i
 
   start_index =  requests_count > user_requests.count ? 0 : ((user_requests.count - requests_count))
   end_index = user_requests.count
   range = start_index..end_index
 
-  erb :requests, :locals => {:user_requests => user_requests[range].reverse}
+  requests_template = '<%= "No requests found" if user_requests.empty? %>
+ <% user_requests.each do |request| %>
+   <%= "<b>Method:</b> #{request.method} <b>Status:</b> #{request.response_status_code} <b>URL:</b> #{request.url}" %></br>
+   <pre><%= request.body %></pre>
+   <% if request.request_file_path != nil %>
+     <a href="/<%= request.request_file_path%>"><%= request.request_file_path%></a><br/>
+     Type: <%= request.request_file_type%>
+   <% end %>
+   <hr/>
+ <% end %>'
+
+  erb requests_template, :locals => {:user_requests => user_requests[range].reverse}
 end
 
 get "/" do
-  erb :home, :locals => {:current_profile => profile_file_path}
+
+  template = '<div>
+  Current Profile : <%= current_profile%> 
+</div>
+<br/>'
+  
+  erb template, :locals => {:current_profile => profile_file_path}
 end
 
