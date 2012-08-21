@@ -2,15 +2,19 @@
 
 Fakerest is a simple tool based on sinatra which starts a http server (webrick) and exposes restful services based on the configuration specified in a YAML format.
 
-# Building 
+# 
 
-## Prerequisites
+# Prerequisites
 
-* [rake][ ] - build tool for ruby
-* [sinatra][ ] - webrick based library to host rest services
+These are required libraries to build and install fakerest:
+
+* [rake][] - build tool for ruby
+* [sinatra] ] - webrick based library to host rest services
 
 
-## Follow these simple steps to create a gem and install it
+# Building  
+
+Follow these simple steps to create a gem and install it
 
     git clone git://github.com/katta/fakerest.git
     rake
