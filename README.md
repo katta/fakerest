@@ -38,11 +38,11 @@ this will display the instructions on all the command line arguments to use fake
 
 ### Examples
 
-* Specifying config file
+#### Specifying config file
 
     $ fakerest -c sample.yaml
     
-*sample.yaml" is a config file which contains the configuration of all rest services you would like to host. It looks like 
+`sample.yaml` is a config file which contains the configuration of all rest services you would like to host. It looks like 
 
     ---
     method : get
@@ -59,6 +59,6 @@ this will display the instructions on all the command line arguments to use fake
       content_type : text/plain
       status_code : 200
 
-* Changing the default port
+#### Changing the default port
 
     $ fakerest -p 2222 -c sample.yaml
