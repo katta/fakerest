@@ -32,7 +32,33 @@ this will display the instructions on all the command line arguments to use fake
     Usage: fakerest.rb [options]
         -c, --config CONFIG_FILE         Confilg file to load request mappings (required)
         -p, --port PORT                  Port on which the fakerest to be run. Default = 1111
-        -w, --views VIEWS_FOLDER         Folder path that contains the views (required)
-        -u, --uploads UPLOADS_FOLDER     Folder to which any file uploads to be stored (required)
+        -w, --views VIEWS_FOLDER         Folder path that contains the views. 
+        -u, --uploads UPLOADS_FOLDER     Folder to which any file uploads to be stored.
         -h, --help                       Displays help message
 
+### Examples
+
+* Specifying config file
+
+    $ fakerest -c sample.yaml
+    
+*sample.yaml" is a config file which contains the configuration of all rest services you would like to host. It looks like 
+
+    ---
+    method : get
+    path : /customer/:id
+    response:
+      content_file : customer
+      content_type : json
+      status_code : 200
+    ---
+    method : post
+    path : /customer
+    response:
+      content_file : customer_created
+      content_type : text/plain
+      status_code : 200
+
+* Changing the default port
+
+    $ fakerest -p 2222 -c sample.yaml
