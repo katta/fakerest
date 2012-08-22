@@ -21,7 +21,11 @@ These are required libraries to build and install fakerest:
 * [rake](https://github.com/jimweirich/rake) - build tool for ruby
 * [sinatra](https://github.com/sinatra/sinatra) - webrick based library to host rest services
 
-## Building  
+## Installing
+
+    gem install fakerest
+
+## Building from code
 
 Follow these simple steps to create a gem and install it
 
