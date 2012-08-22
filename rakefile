@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'rubygems/package_task'
+require 'rake/testtask'
 
 spec = Gem::Specification.new do |s|
   s.name         = 'fakerest'
@@ -16,7 +17,13 @@ spec = Gem::Specification.new do |s|
 end
 
 Gem::PackageTask.new(spec) do |pkg|
-  puts "Building fakerest gem"
+  nil
 end
 
-task :default => [:repackage]
+Rake::TestTask.new do |t|
+  t.libs << "test"
+  t.test_files = FileList["test/**/test*.rb"]
+  t.options = "-v"
+end
+
+task :default => [:test, :repackage]
