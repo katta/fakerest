@@ -1,57 +1,9 @@
 require 'rubygems'
 require 'yaml'
-require 'optparse'
+require 'fakerest/argumentsparser'
 
 
 module FakeRest
-
-  class ArgumentsParser
-
-    def parse(args)
-      options = {}
-
-      optparse = OptionParser.new do |opts|
-        opts.banner = "Usage: fakerest.rb [options]"
-
-        options[:port] = 1111
-        options[:config] = nil
-        options[:views] = 'views/'
-        options[:uploads] = 'uploads/'
-
-        opts.on("-c","--config CONFIG_FILE","Confilg file to load request mappings (required)") do |cfg|
-          options[:config] = cfg
-        end
-
-        opts.on("-p","--port PORT","Port on which the fakerest to be run. Default = 1111") do |prt|
-          options[:port] = prt
-        end
-
-        opts.on("-w","--views VIEWS_FOLDER","Folder path that contains the views (required)") do |views|
-          options[:views] = views
-        end
-
-        opts.on("-u","--uploads UPLOADS_FOLDER","Folder to which any file uploads to be stored (required)") do |uploads|
-          options[:uploads] = uploads
-        end
-
-        opts.on( "-h", "--help", "Displays help message" ) do
-          puts opts
-          exit
-        end
-      end
-      optparse.parse!(args)
-
-
-      if(options[:config] == nil)
-        puts optparse
-        exit(-1)
-      end
-
-      options
-    end
-  end
-
-
 
   class RequestMapping
     attr_reader :status_code, :response_file, :content_type, :method, :path
@@ -176,7 +128,7 @@ get "/requests/:count" do
    <hr/>
  <% end %>'
 
-  erb requests_template, :locals => {:user_requests => user_requests[range].reverse}
+ erb requests_template, :locals => {:user_requests => user_requests[range].reverse}
 end
 
 get "/" do
@@ -185,7 +137,7 @@ get "/" do
   Current Profile : <%= current_profile%> 
 </div>
 <br/>'
-  
-  erb template, :locals => {:current_profile => profile_file_path}
+
+erb template, :locals => {:current_profile => profile_file_path}
 end
 
