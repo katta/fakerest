@@ -2,6 +2,18 @@
 
 Fakerest is a simple tool based on sinatra which starts a http server (webrick) and exposes restful services based on the configuration specified in a YAML format.
 
+## Features
+
+You can :
+
+* Stub any of the restful servies be it any method GET, POST, HEAD, PUT etc.
+* Configure multiple URLs based on your need
+* Define the response code for each of the URL
+* Define the response content type for each of the URL
+* Define the response content based on `erb` templates for each of the URL
+* Look at the requests made by your application for verifying what the application request look like. Quite handly for testing.
+* Upload files and view the files uploaded in your stub.
+
 ## Prerequisites
 
 These are required libraries to build and install fakerest:
