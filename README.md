@@ -30,6 +30,7 @@ These are required libraries to build and install fakerest:
 Follow these simple steps to create a gem and install it
 
     git clone git://github.com/katta/fakerest.git
+    cd fakerest
     rake
     gem install pkg/fakerest-0.0.1.gem
     
