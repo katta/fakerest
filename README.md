@@ -61,4 +61,35 @@ this will display the instructions on all the command line arguments to use fake
 
 #### Changing the default port
 
+Use `-p` option to change the port on which the fakerest runs. By default it runs on `1111` port.
+
     $ fakerest -p 2222 -c sample.yaml
+
+### Views
+
+Views are the `erb` template files from which the content is read and is served as a response to a http request based on the view file specified in the configuration.
+
+For e.g. In the following configuration, notice the value for `content_file`. Fakerest looks for a template `customer.erb` in the views folder.
+
+    method : get
+    path : /customer/:id
+    response:
+      content_file : customer # view file
+      content_type : json 
+      status_code : 200
+
+Option `-w` can be used to tell Fakerest the folder in which the view files are held. A samile view file will look like this
+
+    {
+      "id" : "<%= params["id"] %>",
+      "name" : "John"
+    }
+
+Notice the expression `<%= params["id"] %>` in the above template code, this will get evaluated before the response is served to the client by Fakerest using the parameters passed in the request.
+
+In the above case if a request is made to a url `http://localhost:1111/customer/20` the response will be 
+
+    {
+      "id" : "20",
+      "name" : "John"
+    }
