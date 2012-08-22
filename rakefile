@@ -11,7 +11,7 @@ spec = Gem::Specification.new do |s|
   s.email       = 'vatsa.katta@gmail.com'
   s.files       = ["lib/fakerest.rb"]
   s.executables = 'fakerest'
-  s.homepage    = 'http://srivatsakatta.com'
+  s.homepage    = 'http://github.com/katta/fakerest'
 end
 
 Gem::PackageTask.new(spec) do |pkg|
