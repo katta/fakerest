@@ -1,13 +1,14 @@
 require 'test/unit'
 require 'fakerest/userrequests'
+include FakeRest
 
 class UserRequestsTest < Test::Unit::TestCase
   def test_add_new_user_request
-    user_request = FakeRest::UserRequest.new("post", "/customer/1", "body", 200)
+    user_request = UserRequest.new("post", "/customer/1", "body", 200)
 
-    FakeRest::UserRequests.add user_request
+    UserRequests.add user_request
 
-    user_requests = FakeRest::UserRequests.user_requests
+    user_requests = UserRequests.user_requests
     
     assert_equal(1, user_requests.size)
     req = user_requests[0]
