@@ -13,8 +13,8 @@ module FakeRest
 
         options[:port] = 1111
         options[:config] = nil
-        options[:views] = 'views/'
-        options[:uploads] = 'uploads/'
+        options[:views] = 'views'
+        options[:uploads] = 'uploads'
 
         opts.on("-c","--config CONFIG_FILE","Confilg file to load request mappings (required)") do |cfg|
           options[:config] = cfg
