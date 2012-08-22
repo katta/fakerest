@@ -152,7 +152,7 @@ require 'sinatra'
 
 set :port, options[:port]
 set :views, options[:views]
-
+set :run, true
 profile_file_path = options[:config]
 
 FakeRest::ProfileLoader.load(profile_file_path, options)
