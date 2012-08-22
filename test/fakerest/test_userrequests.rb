@@ -1,5 +1,7 @@
 require 'test/unit'
 require 'fakerest/userrequests'
+require 'mocha'
+
 include FakeRest
 
 class UserRequestsTest < Test::Unit::TestCase
@@ -18,4 +20,18 @@ class UserRequestsTest < Test::Unit::TestCase
     assert_equal("body", req.body)
     assert_equal(200, req.response_status_code)
   end
+
+  def test_request_body_should_have_params_and_body
+    params = {"id" => "10"}
+    body = mock("body")
+    request = mock("request")
+    request.expects(:body).returns(body)
+    body.expects(:read).returns("this is body")
+
+    body = UserRequests.generate_request_body(params, request)
+  
+    assert(body.include? "id=10")
+    assert(body.include? "this is body")
+  end
+
 end

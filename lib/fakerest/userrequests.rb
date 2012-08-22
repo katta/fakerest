@@ -24,6 +24,7 @@ module FakeRest
         next if key == 'file' or key == 'splat' or key == 'captures'
         request_body += value != nil ? (key + "=" + value + ",") : (key + ",")
       end
+     
       request_body += "\nBody is: " + request.body.read
       request_body
     end

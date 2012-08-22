@@ -31,7 +31,7 @@ Follow these simple steps to create a gem and install it
 
     git clone git://github.com/katta/fakerest.git
     cd fakerest
-    rake
+    rake package
     gem install pkg/fakerest-0.0.1.gem
     
 Once you install this gem it creates an executable `fakerest` in the gems default executable directory. To find the gems executable directory use the command `gem environment` and look out for _EXECUTABLE DIRECTORY:_
