@@ -93,3 +93,12 @@ In the above case if a request is made to a url `http://localhost:1111/customer/
       "id" : "20",
       "name" : "John"
     }
+
+### File uploads
+
+This is work in progess :)
+
+### Credits
+
+[Aravind](https://github.com/arvindsv) for his help in brainstorming this idea
+[Vignesh](https://github.com/VigneshRE) for his contribution for the first version of this library
