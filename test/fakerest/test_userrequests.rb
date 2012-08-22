@@ -34,4 +34,21 @@ class UserRequestsTest < Test::Unit::TestCase
     assert(body.include? "this is body")
   end
 
+
+  def test_request_body_should_not_contain_file_spat_and_captures_params
+    params = {"file" => "some file", "spat" => "spat value", "id" => "10"}
+    body = mock("body")
+    request = mock("request")
+    request.expects(:body).returns(body)
+    body.expects(:read).returns("this is body")
+    
+    body = UserRequests.generate_request_body(params, request)
+  
+    puts body
+    assert_equal(true, (body.include? "id=10"), "expected param id")
+    assert_equal(false, (body.include? "splat"), "unexpected param splat")
+    assert_equal(false, (body.include? "captures"), "unexpected param captures")
+    assert_equal(false, (body.include? "file"), "unexpected param file")
+  end
+
 end
