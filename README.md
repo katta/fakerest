@@ -18,8 +18,8 @@ You can :
 
 These are required libraries to build and install fakerest:
 
-* [rake](https://github.com/jimweirich/rake) - build tool for ruby
 * [sinatra](https://github.com/sinatra/sinatra) - webrick based library to host rest services
+* [rake](https://github.com/jimweirich/rake) - build tool for ruby (required only if you are building from code)
 * [mocha](https://github.com/freerange/mocha) - mocha is a mocking and stubbing library for Ruby (this is required only for running tests)
 
 ## Installing
