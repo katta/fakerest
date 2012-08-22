@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'yaml'
 require 'fakerest/argumentsparser'
+require 'fakerest/userrequests'
 
 
 module FakeRest
@@ -16,28 +17,11 @@ module FakeRest
     end
   end
 
-  class UserRequest
-    attr_reader :response_status_code, :url, :body, :method, :request_file_path, :request_file_type
-    def initialize(method, url, body, response_status_code, request_file_path = "", request_file_type = "")
-      @method = method
-      @url = url
-      @body = body
-      @response_status_code = response_status_code
-      @request_file_path = request_file_path
-      @request_file_type = request_file_type
-    end
-
-    def to_s
-      "#{method} #{url} #{response_status_code}\n#{body}\n\n"
-    end
-  end
-
   class ProfileLoader
-    @@user_requests = []
-    @@options = {}
+    @options = {}
 
-    def self.load(profile_file, options)
-      @@options = options
+    def load(profile_file, options)
+      @options = options
       request_mappings = []
       profile_file_path = profile_file
 
@@ -56,17 +40,18 @@ module FakeRest
 
       configure_requests(request_mappings)
     end
+    
 
-    def self.configure_requests(request_mappings)
+    def configure_requests(request_mappings)
       request_mappings.each do |request_mapping|
         block = Proc.new {
-          request_file_path, request_file_type = ProfileLoader.upload_file(params['file']) if(params[:file] != nil)
+          request_file_path, request_file_type = upload_file(params['file']) if(params[:file] != nil)
 
           content_type request_mapping.content_type
           status request_mapping.status_code
-          request_body = ProfileLoader.generate_request_body(params, request)
+          request_body = UserRequests.generate_request_body(params, request)
 
-          @@user_requests << UserRequest.new(request.request_method, request.url, request_body, request_mapping.status_code, request_file_path, request_file_type)
+          UserRequests.add  UserRequest.new(request.request_method, request.url, request_body, request_mapping.status_code, request_file_path, request_file_type)
           erb request_mapping.response_file.to_sym, params
         }
 
@@ -74,27 +59,14 @@ module FakeRest
       end
     end
 
-    def self.upload_file(file_params)
+    def upload_file(file_params)
       file_name = file_params[:filename] + Time.now.strftime("%Y%m%d%H%M%S")
-      File.open("#{@@options[:uploads]}" + file_name, "w") do |f|
+      File.open("#{@options[:uploads]}/" + file_name, "w") do |f|
         f.write(file_params[:tempfile].read)
       end
       [file_name, file_params[:type]]
     end
 
-    def self.generate_request_body(params, request)
-      request_body = "Params are: "
-      params.each do |key, value|
-        next if key == 'file' or key == 'splat' or key == 'captures'
-        request_body += value != nil ? (key + "=" + value + ",") : (key + ",")
-      end
-      request_body += "\nBody is: " + request.body.read
-      request_body
-    end
-
-    def self.user_requests
-      @@user_requests
-    end
   end
 end
 
@@ -107,10 +79,11 @@ set :views, options[:views]
 set :run, true
 profile_file_path = options[:config]
 
-FakeRest::ProfileLoader.load(profile_file_path, options)
+profile_loader = FakeRest::ProfileLoader.new
+profile_loader.load(profile_file_path, options)
 
 get "/requests/:count" do
-  user_requests = FakeRest::ProfileLoader.user_requests
+  user_requests = FakeRest::UserRequests.user_requests
   requests_count = params[:count].to_i
 
   start_index =  requests_count > user_requests.count ? 0 : ((user_requests.count - requests_count))
