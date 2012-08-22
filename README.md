@@ -120,6 +120,10 @@ This is work in progess :)
 
 Just go to your favorite browser and hit `http://localhost:1111/requests/10` where `10` is a number of recent requests you would like to verify. You could change that number `10` to number of requests you are interested in.
 
+### Stable versions
+
+`0.0.2` - Released (file uploads are not working in this release)
+
 ### Credits
 
 * [Aravind](https://github.com/arvindsv) for his help in brainstorming this idea
