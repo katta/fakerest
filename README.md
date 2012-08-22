@@ -114,6 +114,10 @@ In the above case if a request is made to a url `http://localhost:1111/customer/
 
 This is work in progess :)
 
+### Verifying the requests made to fakerest
+
+Just go to your favorite browser and hit `http://localhost:1111/requests/10` where 10 is a number of recent requests you would like to verify. You could change that number `10` to number of requests you are interested in.
+
 ### Credits
 
 * [Aravind](https://github.com/arvindsv) for his help in brainstorming this idea
