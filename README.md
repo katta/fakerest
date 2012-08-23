@@ -125,6 +125,7 @@ Just go to your favorite browser and hit `http://localhost:1111/requests/10` whe
 ### Stable versions
 
 `0.0.2` - Released (file uploads are not working in this release)
+`0.0.3` - Released (with fix for file uploads)
 
 ### Credits
 
