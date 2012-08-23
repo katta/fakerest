@@ -114,7 +114,9 @@ In the above case if a request is made to a url `http://localhost:1111/customer/
 
 ### File uploads
 
-This is work in progess :)
+You can do a post with file attachments to fakerest server and verify the content of the file using the browser (see next section)
+
+> There is a known issue with this, the file attachment parameter name should be "file"
 
 ### Verifying the requests made to fakerest
 
