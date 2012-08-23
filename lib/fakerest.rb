@@ -10,7 +10,10 @@ require 'sinatra'
 
 set :port, options[:port]
 set :views, options[:views]
+set :public_folder, options[:uploads]
+set :static, true
 set :run, true
+
 profile_file_path = options[:config]
 
 profile_loader = FakeRest::ProfileLoader.new
@@ -42,8 +45,8 @@ get "/" do
 
   template = '<div>
   Current Profile : <%= current_profile%> 
-</div>
-<br/>'
+  </div>
+  <br/>'
 
 erb template, :locals => {:current_profile => profile_file_path}
 end

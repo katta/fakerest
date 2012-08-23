@@ -14,10 +14,10 @@ module FakeRest
   end
 
   class ProfileLoader
-    @options = {}
+    @@options = {}
 
     def load(profile_file, options)
-      @options = options
+      @@options = options
       request_mappings = []
       profile_file_path = profile_file
 
@@ -41,7 +41,7 @@ module FakeRest
     def configure_requests(request_mappings)
       request_mappings.each do |request_mapping|
         block = Proc.new {
-          request_file_path, request_file_type = upload_file(params['file']) if(params[:file] != nil)
+          request_file_path, request_file_type = ProfileLoader.upload_file(params['file']) if(params[:file] != nil)
 
           content_type request_mapping.content_type
           status request_mapping.status_code
@@ -55,9 +55,9 @@ module FakeRest
       end
     end
 
-    def upload_file(file_params)
-      file_name = file_params[:filename] + Time.now.strftime("%Y%m%d%H%M%S")
-      File.open("#{@options[:uploads]}/" + file_name, "w") do |f|
+    def self.upload_file(file_params)
+      file_name =Time.now.strftime("%Y%m%d%H%M%S") + "_" +  file_params[:filename]
+      File.open("#{@@options[:uploads]}/" + file_name, "w") do |f|
         f.write(file_params[:tempfile].read)
       end
       [file_name, file_params[:type]]
