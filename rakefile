@@ -4,10 +4,10 @@ require 'rake/testtask'
 
 spec = Gem::Specification.new do |s|
   s.name         = 'fakerest'
-  s.version      = '0.0.3'
+  s.version      = '0.0.4'
   s.date         = '2012-08-21'
   s.summary      = "Fake rest"
-  s.description  = "Sinatra base http server which fakes the rest services based on the config given"
+  s.description  = "Fakerest is a simple tool based on sinatra which starts a http server (webrick) and exposes restful services based on the configuration specified in a YAML format, which can be used as stub out any external systems"
   s.authors      = ["Srivatsa Katta"]
   s.email        = 'vatsa.katta@gmail.com'
   s.files        = ["lib/fakerest.rb", "lib/fakerest/argumentsparser.rb", "lib/fakerest/userrequests.rb","lib/fakerest/profileloader.rb"]
