@@ -33,7 +33,7 @@ Follow these simple steps to create a gem and install it
     git clone git://github.com/katta/fakerest.git
     cd fakerest
     rake package
-    gem install pkg/fakerest-0.0.1.gem
+    gem install pkg/fakerest-<version>.gem
     
 Once you install this gem it creates an executable `fakerest` in the gems default executable directory. To find the gems executable directory use the command `gem environment` and look out for _EXECUTABLE DIRECTORY:_
 
@@ -50,9 +50,9 @@ this will display the instructions on all the command line arguments to use fake
     Usage: fakerest.rb [options]
         -c, --config CONFIG_FILE         Confilg file to load request mappings (required)
         -p, --port PORT                  Port on which the fakerest to be run. Default = 1111
-        -w, --views VIEWS_FOLDER         Folder path that contains the views. 
-        -u, --uploads UPLOADS_FOLDER     Folder to which any file uploads to be stored.
-        -h, --help                       Displays help message
+        -w, --views VIEWS_FOLDER         Folder path that contains the views. Default = <WORKING_DIR>/views
+        -u, --uploads UPLOADS_FOLDER     Folder to which any file uploads to be stored. Default = <WORKING_DIR>/uploads
+        -h, --help                       Displays this help message
 
 ### Examples
 
