@@ -122,11 +122,11 @@ You can do a post with file attachments to fakerest server and verify the conten
 
 Just go to your favorite browser and hit `http://localhost:1111/requests/10` where `10` is a number of recent requests you would like to verify. You could change that number `10` to number of requests you are interested in.
 
-### Stable versions
+### Released versions
 
-* `0.0.2` - Released (file uploads are not working in this release)
-* `0.0.3` - Released (with fix for file uploads)
-* `0.0.4` - Released (minor bug fixes)
+* `0.0.4` - minor bug fixes
+* `0.0.3` - with fix for file uploads
+* `0.0.2` - initial version (with know issue of file uploads not working)
 
 ### Credits
 
