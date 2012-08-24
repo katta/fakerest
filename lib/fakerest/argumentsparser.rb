@@ -24,11 +24,11 @@ module FakeRest
           options[:port] = prt
         end
 
-        opts.on("-w","--views VIEWS_FOLDER","Folder path that contains the views (required)") do |views|
+        opts.on("-w","--views VIEWS_FOLDER","Folder path that contains the views. Default = <WORKING_DIR>/views") do |views|
           options[:views] = views
         end
 
-        opts.on("-u","--uploads UPLOADS_FOLDER","Folder to which any file uploads to be stored (required)") do |uploads|
+        opts.on("-u","--uploads UPLOADS_FOLDER","Folder to which any file uploads to be stored. Default = <WORKING_DIR>/uploads") do |uploads|
           options[:uploads] = uploads
         end
 
