@@ -25,6 +25,18 @@ class ArgumentsParserTest < Test::Unit::TestCase
     assert_equal("2222", options[:port] )
   end
 
+  def test_default_binding_is_localhost
+    options = @parser.parse(["-c" , "config"])
+
+    assert_equal("localhost", options[:bind], "Expected default binding to be localhost")
+  end
+
+  def test_should_override_default_binding
+    options = @parser.parse(["-c" , "config", "-o", "0.0.0.0"])
+
+    assert_equal("0.0.0.0", options[:bind] )
+  end
+
   def test_should_override_default_views_folder
     options = @parser.parse(["-c" , "config", "-w", "v1"])
 
