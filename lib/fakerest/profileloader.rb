@@ -1,4 +1,5 @@
 require 'fakerest/userrequests'
+require 'sinatra'
 
 module FakeRest  
 
