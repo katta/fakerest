@@ -1,7 +1,7 @@
 require 'fakerest/userrequests'
 require 'sinatra'
 
-module FakeRest  
+module FakeRest
 
   class RequestMapping
     attr_reader :status_code, :response_file, :content_type, :method, :path
@@ -52,7 +52,7 @@ module FakeRest
           erb request_mapping.response_file.to_sym, params
         }
 
-        send request_mapping.method, request_mapping.path, &block
+        Sinatra::Base.send request_mapping.method, request_mapping.path, &block
       end
     end
 
