@@ -9,6 +9,7 @@ options = FakeRest::ArgumentsParser.new.parse(ARGV)
 require 'sinatra'
 
 set :port, options[:port]
+set :bind, options[:bind]
 set :views, options[:views]
 set :public_folder, options[:uploads]
 set :static, true
