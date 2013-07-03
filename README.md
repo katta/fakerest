@@ -19,6 +19,8 @@ You can :
 
 ## Prerequisites
 
+Ruby version `1.9.3`
+
 These are required libraries to build and install fakerest:
 
 * [sinatra](https://github.com/sinatra/sinatra) - webrick based library to host rest services
