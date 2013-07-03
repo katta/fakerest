@@ -15,6 +15,7 @@ module FakeRest
         options[:config] = nil
         options[:views] = 'views'
         options[:uploads] = 'uploads'
+        options[:bind] = 'localhost'
 
         opts.on("-c","--config CONFIG_FILE","Confilg file to load request mappings (required)") do |cfg|
           options[:config] = cfg
@@ -24,7 +25,11 @@ module FakeRest
           options[:port] = prt
         end
 
-        opts.on("-w","--views VIEWS_FOLDER","Folder path that contains the views. Default = <WORKING_DIR>/views") do |views|
+        opts.on("-o","--bind server hostname or IP address","String specifying the hostname or IP address of the interface to listen on . Default = localhost") do |prt|
+          options[:bind] = prt
+        end
+
+          opts.on("-w","--views VIEWS_FOLDER","Folder path that contains the views. Default = <WORKING_DIR>/views") do |views|
           options[:views] = views
         end
 
