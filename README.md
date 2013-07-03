@@ -2,6 +2,9 @@
 
 Fakerest is a simple tool based on sinatra which starts a http server (webrick) and exposes restful services based on the configuration specified in a YAML format.
 
+[![Build Status](https://travis-ci.org/katta/fakerest.png)](https://travis-ci.org/katta/fakerest)
+
+
 ## Features
 
 You can :
@@ -128,6 +131,7 @@ Just go to your favorite browser and hit `http://localhost:1111/requests/10` whe
 
 ### Released versions
 
+* `0.0.6` - Option to bind to a given IP Address
 * `0.0.4` - minor bug fixes
 * `0.0.3` - with fix for file uploads
 * `0.0.2` - initial version (with know issue of file uploads not working)
