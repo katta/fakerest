@@ -29,17 +29,21 @@ These are required libraries to build and install fakerest:
 
 ## Installing
 
-    gem install fakerest
+```bash
+gem install fakerest
+```
 
 ## Building from code
 
 Follow these simple steps to create a gem and install it
 
-    git clone git://github.com/katta/fakerest.git
-    cd fakerest
-    bundle install
-    rake package
-    gem install pkg/fakerest-<version>.gem
+```bash
+git clone git://github.com/katta/fakerest.git
+cd fakerest
+bundle install
+rake package
+gem install pkg/fakerest-<version>.gem
+```
     
 Once you install this gem it creates an executable `fakerest` in the gems default executable directory. To find the gems executable directory use the command `gem environment` and look out for _EXECUTABLE DIRECTORY:_
 
@@ -49,7 +53,9 @@ For easy access update your `PATH` environment variable to point to a _EXECUTABL
 
 You can run fakerest using a command
 
-    $ fakerest
+```bash
+$ fakerest
+```
 
 this will display the instructions on all the command line arguments to use fakerest which looks like 
 
@@ -65,9 +71,12 @@ this will display the instructions on all the command line arguments to use fake
 
 #### Specifying config file
 
-    $ fakerest -c sample.yaml
+```bash
+$ fakerest -c sample.yaml
+```
     
 `sample.yaml` is a config file which contains the configuration of all rest services you would like to host. It looks like 
+
 ```yml
 ---
 method : get
@@ -84,11 +93,14 @@ response:
   content_type : text/plain
   status_code : 200
 ```
+
 #### Changing the default port
 
 Use `-p` option to change the port on which the fakerest runs. By default it runs on `1111` port.
 
-    $ fakerest -p 2222 -c sample.yaml
+```bash
+$ fakerest -p 2222 -c sample.yaml
+```
 
 ### Views
 
@@ -116,7 +128,7 @@ Notice the expression `<%= params["id"] %>` in the above template code, this wil
 
 In the above case if a request is made to a url `http://localhost:1111/customer/20` the response will be 
 
-```erb
+```json
 {
   "id" : "20",
   "name" : "John"
