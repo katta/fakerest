@@ -25,7 +25,7 @@ module FakeRest
           options[:port] = prt
         end
 
-        opts.on("-o","--bind server hostname or IP address","String specifying the hostname or IP address of the interface to listen on . Default = localhost") do |prt|
+        opts.on("-o","--bind HOSTNAME/IP_ADDR","String specifying the hostname or IP address of the interface to listen on . Default = localhost") do |prt|
           options[:bind] = prt
         end
 
