@@ -52,14 +52,15 @@ You can run fakerest using a command
     $ fakerest
 
 this will display the instructions on all the command line arguments to use fakerest which looks like 
- 
-    Usage: fakerest.rb [options]
-        -c, --config CONFIG_FILE         Confilg file to load request mappings (required)
-        -p, --port PORT                  Port on which the fakerest to be run. Default = 1111
-        -w, --views VIEWS_FOLDER         Folder path that contains the views. Default = <WORKING_DIR>/views
-        -u, --uploads UPLOADS_FOLDER     Folder to which any file uploads to be stored. Default = <WORKING_DIR>/uploads
-        -h, --help                       Displays this help message
 
+    Usage: fakerest.rb [options]
+     -c, --config CONFIG_FILE         Confilg file to load request mappings (required)
+     -p, --port PORT                  Port on which the fakerest to be run. Default = 1111
+     -o, --bind HOSTNAME/IP_ADDR      String specifying the hostname or IP address of the interface to listen on . Default = localhost
+     -w, --views VIEWS_FOLDER         Folder path that contains the views. Default = <WORKING_DIR>/views
+     -u, --uploads UPLOADS_FOLDER     Folder to which any file uploads to be stored. Default = <WORKING_DIR>/uploads
+     -h, --help                       Displays help message
+    
 ### Examples
 
 #### Specifying config file
