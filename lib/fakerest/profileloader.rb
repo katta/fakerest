@@ -48,7 +48,7 @@ module FakeRest
           status request_mapping.status_code
           request_body = UserRequests.generate_request_body(params, request)
 
-          UserRequests.add  UserRequest.new(request.request_method, request.url, request_body, request_mapping.status_code, request_file_path, request_file_type)
+          UserRequests.add  UserRequest.new(request.request_method, request.url, request_body, request_mapping.status_code, params, request_file_path, request_file_type)
           erb request_mapping.response_file.to_sym, params
         }
 
