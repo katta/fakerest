@@ -4,8 +4,8 @@ require 'rake/testtask'
 
 spec = Gem::Specification.new do |s|
   s.name         = 'fakerest'
-  s.version      = '0.0.7'
-  s.license      = 'Apache-V2'  
+  s.version      = '0.0.8'
+  s.license      = 'ApacheV2'  
   s.date         = '2013-10-04'
   s.summary      = "Fake rest"
   s.description  = "Fakerest is a simple tool based on sinatra which starts a http server (webrick) and exposes restful services based on the configuration specified in a YAML format, which can be used as stub out any external systems"
